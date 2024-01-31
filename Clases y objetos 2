@@ -1,0 +1,105 @@
+#include <iostream>
+#include <string>
+#include<locale.h>
+
+using namespace std;
+
+class Materia{
+    private:
+        int clave;
+        string Nombre;
+        string ProfesorTit;
+        string LibroTexto;
+
+    public:
+        Materia(int nuevaclave, const string& nombre, const string& profesortit, const string& librotexto)
+        : clave(nuevaclave), Nombre(nombre), ProfesorTit(profesortit), LibroTexto(librotexto){}
+
+      void impdat(){//impdat es imprimir datos
+          cout<< "Clave de la materia: "<< clave << endl;
+          cout<< "Nombre de la materia: "<< Nombre << endl;
+          cout<< "Nombre del profesor: "<< ProfesorTit << endl;
+          cout<< "Nombre del libro de texto: "<< LibroTexto << endl;
+      }
+
+    void changeProf(const string& profesortit){
+        ProfesorTit = profesortit;
+    }
+
+    void changeClave(int& nuevaclave){
+        clave = nuevaclave;
+    }
+};
+
+int main()
+{
+    Materia Programacion(1, "Programacion", "Saul", "Programbook");
+    Materia BasesDatos(2, "Bases de Datos", "Erick", "Databasebook");
+
+    setlocale(LC_ALL, "");
+    int opcion;
+    int clave, nuevaclave;
+    string profesortit;
+
+    while(opcion != 5)
+    {
+        cout<<" OPCIONES"<<endl;
+        cout<<"1.-Cambiar clave: "<< endl;
+        cout<<"2.-Cambiar profesor: "<< endl;
+        cout<<"3.-Mostrar datos: "<< endl;
+        cout<<"Ingrese la opcion: "<<endl;
+        cin>>opcion;
+
+
+        switch(opcion)
+        {
+        case 1:
+            cout<<"Ingrese clave de la materia para para nueva clave: "<< endl;
+            cin>>clave;
+            cout<<"Ingrese la nueva clave: ";
+            cin>>nuevaclave;
+
+                if(clave==1)
+                {
+                Programacion.changeClave(nuevaclave);
+                }else if(clave==2)
+                {
+                BasesDatos.changeClave(nuevaclave);
+                }else
+                {cout<<"Clave no encontrada"<< endl;}
+                break;
+
+        case 2:
+            cout<<"Ingrese clave de la materia para nuevo profesor: "<< endl;
+            cin>>clave;
+            cout<<"Ingrese el nuevo profesor: ";
+            cin>>profesortit;
+
+                if(clave==1)
+                {
+                Programacion.changeProf(profesortit);
+                }else if(clave==2)
+                {
+                BasesDatos.changeProf(profesortit);
+                }else
+                {cout<<"Clave no encontrada"<< endl;}
+                break;
+
+        case 3:
+            cout<<"Ingrese clave de la materia para mostrar: "<< endl;
+            cin>>clave;
+
+                if(clave==1)
+                {
+                Programacion.impdat();
+                }else if(clave==2)
+                {
+                BasesDatos.impdat();
+                }else
+                {cout<<"Clave no encontrada"<< endl;}
+                break;
+        }
+    }
+
+    return 0;
+}
