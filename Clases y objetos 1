@@ -1,0 +1,139 @@
+#include <iostream>
+#include <string>
+#include<locale.h>
+
+using namespace std;
+
+class Empleado{
+
+private:
+    int ClaveEmpleado;
+    string Nombre;
+    string Domicilio;
+    string ReportaA;
+    float Sueldo;
+
+
+public:
+    Empleado(int clave, const string& nombre, const string& domicilio, const string& reporte, float sueldo)
+    : ClaveEmpleado(clave), Nombre(nombre), Domicilio(domicilio), ReportaA(reporte), Sueldo(sueldo){}//
+
+    void imprime(){
+        cout<<"Clave del Empleado: "<< ClaveEmpleado << endl;
+        cout<<"Nombre del Empleado: "<< Nombre << endl;
+        cout<<"Domicilio del Empleado: "<< Domicilio << endl;
+        cout<<"Reporta a: "<< ReportaA << endl;
+        cout<<"Sueldo: $"<< Sueldo << endl;
+    }
+
+    void cambiarDomicilio(const string& domicilio){
+        Domicilio = domicilio;
+    }
+
+    void cambiarReportaA(const string& reporte){
+        ReportaA = reporte;
+    }
+
+    void ActualSueldo(float sueldo){
+        Sueldo += Sueldo*(sueldo/100);
+    }
+
+
+};
+
+int main()
+{
+    setlocale(LC_ALL, "");
+    Empleado JefePlanta(123, "Damian Reyes", "Calle Jacaranda", "Eduardo", 13000);
+    Empleado JefePersonal(234, "Saul Viera", "Calle Avila Camacho", "Javier", 8000);
+
+    int clave=0;
+    int opcion=0;
+    string domicilio, reporte;
+    float sueldo;
+
+
+    while(opcion != 5)
+    {
+        cout<<"     MENÚ DE OPCIONES   "<< endl;
+        cout<<"1.- Mostrar datos del empleado" << endl;
+        cout<<"2.- Cambiar domicilio" << endl;
+        cout<<"3.- Actualizar sueldo" << endl;
+        cout<<"4.- Cambio de nombre de reporte" << endl;
+        cout<<"Ingrese una opcion: "<< endl;
+        cin>> opcion;
+
+        switch(opcion)
+        {
+            case 1:
+                cout<<"Ingrese clave: "<< endl;
+                cin>> clave;
+
+                if(clave==123)
+                {
+                JefePlanta.imprime();
+                }else if(clave==234)
+                {
+                JefePersonal.imprime();
+                }else
+                {cout<<"Empleado no encontrado"<< endl;}
+                system("pause");
+                system("cls");
+                break;
+            case 2:
+                cout<<"Ingrese clave: "<< endl;
+                cin >> clave;
+                cout << "Ingrese el nuevo domicilio: ";
+                cin >> domicilio;
+
+                if(clave==123)
+                {
+                JefePlanta.cambiarDomicilio(domicilio);
+                }else if(clave==234)
+                {
+                JefePersonal.cambiarDomicilio(domicilio);
+                }else
+                {cout<<"Empleado no encontrado"<< endl;}
+                system("pause");
+                system("cls");
+                break;
+            case 3:
+                cout<<"Ingrese clave: "<< endl;
+                cin >> clave;
+                cout << "Ingrese el porcentaje de incremento a aumentar al sueldo: ";
+                cin >> sueldo;
+
+                if(clave==123)
+                {
+                JefePlanta.ActualSueldo(sueldo);
+                }else if(clave==234)
+                {
+                JefePersonal.ActualSueldo(sueldo);
+                }else
+                {cout<<"Empleado no encontrado"<< endl;}
+                system("pause");
+                system("cls");
+                break;
+
+
+            case 4:
+                cout<<"Ingrese clave: "<< endl;
+                cin >> clave;
+                cout << "Reporte para: ";
+                cin >> reporte;
+
+                if(clave==123)
+                {
+                JefePlanta.cambiarReportaA(reporte);
+                }else if(clave==234)
+                {
+                JefePersonal.cambiarReportaA(reporte);
+                }else
+                {cout<<"Empleado no encontrado"<< endl;}
+                system("pause");
+                system("cls");
+                break;
+        }
+    }
+    return 0;
+}
